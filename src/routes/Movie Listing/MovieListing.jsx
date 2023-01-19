@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovies } from "../../store/movies/movies.action";
 import { selectMovies } from "../../store/movies/movies.selector";
+import { setActors } from "../../store/actors/actors.action";
+import { setProducers } from "../../store/producers/producers.action";
 
 const MovieListing = () => {
   const dispatch = useDispatch();
