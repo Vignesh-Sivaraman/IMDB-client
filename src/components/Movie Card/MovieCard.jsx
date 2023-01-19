@@ -8,7 +8,7 @@ const MovieCard = ({ movie }) => {
       <img
         variant="top"
         src={movie.movieposter}
-        style={{ width: "100%", height: "250px" }}
+        style={{ width: "100%", height: "350px" }}
         alt={movie.moviename}
       />
       <h5>

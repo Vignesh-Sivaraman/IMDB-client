@@ -1,5 +1,5 @@
 export const env = {
-  api: "http://localhost:3005",
+  api: "https://vercel.com/vignesh-sivaraman/imdb-clone-server/HmmPbCp3La1bNSYNBNhxJKwELqZp",
 };
 
 // "http://localhost:3005"
