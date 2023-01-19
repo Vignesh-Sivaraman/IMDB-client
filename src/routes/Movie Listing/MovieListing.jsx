@@ -4,10 +4,15 @@ import MovieCard from "../../components/Movie Card/MovieCard";
 import "./MovieListing.scss";
 import { env } from "../../config/config";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setMovies } from "../../store/movies/movies.action";
+import { selectMovies } from "../../store/movies/movies.selector";
 
 const MovieListing = () => {
-  let [movies, setMovies] = useState([]);
+  const dispatch = useDispatch();
+  //   let [movies, setMovies] = useState([]);
   let navigate = useNavigate();
+  const movies = useSelector(selectMovies);
 
   const getMovieData = async () => {
     try {
@@ -21,7 +26,7 @@ const MovieListing = () => {
       );
       if (result.status === 200) {
         console.log(result.data);
-        setMovies(result.data);
+        dispatch(setMovies(result.data));
       }
     } catch (err) {
       alert(`Error Code: ${err}`);
@@ -36,9 +41,10 @@ const MovieListing = () => {
     <Fragment>
       <button onClick={() => navigate("/addmovie")}>Add a New Movie</button>
       <div className="cards">
-        {movies.map((movie, i) => {
-          return <MovieCard key={i + 1} movie={movie} />;
-        })}
+        {movies &&
+          movies.map((movie, i) => {
+            return <MovieCard key={i + 1} movie={movie} />;
+          })}
       </div>
     </Fragment>
   );
