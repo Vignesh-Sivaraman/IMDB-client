@@ -83,6 +83,8 @@ const AddMovie = () => {
           // }
         );
         if (result.status === 200) {
+          alert("Movie added");
+          navigate("/");
         }
       } catch (err) {
         alert(
