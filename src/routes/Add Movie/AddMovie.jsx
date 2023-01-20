@@ -2,6 +2,7 @@ import axios from "axios";
 import { FormikProvider, useFormik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { env } from "../../config/config";
 import { setActors } from "../../store/actors/actors.action";
 import { selectActors } from "../../store/actors/actors.selector";
@@ -11,6 +12,7 @@ import "./AddMovie.scss";
 
 const AddMovie = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const getActorData = async () => {
     try {
@@ -170,6 +172,13 @@ const AddMovie = () => {
                       );
                     })}
                   </select>
+
+                  <button
+                    className="btns"
+                    onClick={() => navigate("/addproducer")}
+                  >
+                    Add producer
+                  </button>
                 </div>
                 {/*Actors Names*/}
                 <div className="form-content">
@@ -190,19 +199,27 @@ const AddMovie = () => {
                       );
                     })}
                   </select>
+                  <button
+                    className="btns"
+                    onClick={() => navigate("/addactor")}
+                  >
+                    Add actor
+                  </button>
                 </div>
                 {/*Submit button Names*/}
                 <div className="form-content">
-                  <input
-                    type={"submit"}
-                    value="submit"
-                    className=""
-                    style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
-                  />
+                  <input type={"submit"} value="submit" className="btns" />
                 </div>
               </div>
             </form>
           </FormikProvider>
+          <button
+            className="btns"
+            style={{ marginLeft: "35px" }}
+            onClick={() => navigate("/")}
+          >
+            Home
+          </button>
         </div>
       </div>
     )

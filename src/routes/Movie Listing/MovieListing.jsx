@@ -41,7 +41,14 @@ const MovieListing = () => {
 
   return (
     <Fragment>
-      <button onClick={() => navigate("/addmovie")}>Add a New Movie</button>
+      <div className="title">
+        <h2>IMDB CLONE</h2>
+      </div>
+      <div className="home">
+        <button className="btns" onClick={() => navigate("/addmovie")}>
+          Add a New Movie
+        </button>
+      </div>
       <div className="cards">
         {movies &&
           movies.map((movie, i) => {

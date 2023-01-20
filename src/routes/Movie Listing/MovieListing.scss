@@ -5,3 +5,28 @@
   width: 75%;
   margin: auto;
 }
+
+.home {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  background-color: yellow;
+  margin-bottom: 25px;
+}
+
+.btns {
+  min-width: 35px !important;
+  width: 100px !important;
+  height: 40px;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: aquamarine;
+  border-radius: 1rem;
+  border: 1px solid black;
+  text-align: center;
+}
