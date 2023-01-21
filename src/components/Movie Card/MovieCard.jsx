@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./MovieCard.scss";
 
 const MovieCard = ({ movie }) => {
+  const navigate = useNavigate();
   return (
     <div className="movieCard">
       <h3>{movie.moviename}</h3>
@@ -26,6 +28,13 @@ const MovieCard = ({ movie }) => {
         <b>Plot: </b>
         {movie.movieplot}
       </p>
+      <button
+        onClick={() => navigate(`/updatemovie/${movie.idmovies}`)}
+        className="btns"
+        style={{ backgroundColor: "orange" }}
+      >
+        Update
+      </button>
     </div>
   );
 };

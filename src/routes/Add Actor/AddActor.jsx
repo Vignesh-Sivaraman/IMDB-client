@@ -35,7 +35,6 @@ const AddActor = () => {
           alert("Actor added");
           navigate("/addmovie");
         }
-        console.log(values);
       } catch (err) {
         alert(
           `Error Code: ${err.response.status}- ${err.response.data.message}`

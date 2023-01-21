@@ -12,22 +12,14 @@ import { setProducers } from "../../store/producers/producers.action";
 
 const MovieListing = () => {
   const dispatch = useDispatch();
-  //   let [movies, setMovies] = useState([]);
+
   let navigate = useNavigate();
   const movies = useSelector(selectMovies);
 
   const getMovieData = async () => {
     try {
-      let result = await axios.get(
-        `${env.api}/movies/getallmovies`
-        //     {
-        //     headers: {
-        //       Authorization: window.localStorage.getItem("app-token"),
-        //     },
-        //   }
-      );
+      let result = await axios.get(`${env.api}/movies/getallmovies`);
       if (result.status === 200) {
-        console.log(result.data);
         dispatch(setMovies(result.data));
       }
     } catch (err) {

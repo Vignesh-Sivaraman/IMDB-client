@@ -1,0 +1,87 @@
+.updatemovie-main {
+  width: 100%;
+  min-height: 100vh;
+  max-height: auto;
+  overflow: auto;
+  position: relative;
+  background-image: linear-gradient(
+    125deg,
+    hsl(156deg 43% 91%) 0%,
+    hsl(159deg 46% 91%) 8%,
+    hsl(162deg 49% 91%) 15%,
+    hsl(164deg 52% 91%) 23%,
+    hsl(158deg 52% 90%) 31%,
+    hsl(148deg 50% 88%) 38%,
+    hsl(134deg 45% 87%) 46%,
+    hsl(116deg 42% 87%) 54%,
+    hsl(100deg 44% 87%) 62%,
+    hsl(86deg 45% 88%) 69%,
+    hsl(73deg 42% 87%) 77%,
+    hsl(56deg 34% 83%) 85%,
+    hsl(45deg 35% 80%) 92%,
+    hsl(36deg 34% 78%) 100%
+  );
+  display: flex;
+  justify-content: center;
+  .btns {
+    min-width: 35px !important;
+    width: 100px !important;
+    height: 40px;
+    align-items: center;
+    margin: 0.5rem 1rem;
+    cursor: pointer;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    );
+    border-radius: 1rem;
+    border: 1px solid black;
+  }
+  .box {
+    width: 80%;
+    min-height: 75%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    top: 10%;
+    position: absolute;
+    margin: auto;
+    border-radius: 1rem;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    );
+    // backdrop-filter: blur(25px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    .title {
+      text-align: center;
+      margin: 50px 0 35px 0;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.37);
+      border-radius: 1rem;
+      padding: 1px;
+    }
+    .myForm {
+      .form-content {
+        margin: 10px 5px;
+      }
+      padding: 1rem;
+      label {
+        font-weight: bold;
+        margin-right: 20px;
+      }
+      input.inputbox {
+        border-radius: 10px;
+        padding: 0.5rem 0.5rem;
+        border: 1px solid #fff;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.37);
+        outline: none;
+        width: 100%;
+        margin: 8px 0px 20px 0px;
+      }
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+}

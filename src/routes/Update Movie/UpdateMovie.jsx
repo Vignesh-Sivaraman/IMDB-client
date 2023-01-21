@@ -1,29 +1,26 @@
 import axios from "axios";
 import { FormikProvider, useFormik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { env } from "../../config/config";
 import { setActors } from "../../store/actors/actors.action";
 import { selectActors } from "../../store/actors/actors.selector";
+import { selectMovies } from "../../store/movies/movies.selector";
 import { setProducers } from "../../store/producers/producers.action";
 import { selectProducers } from "../../store/producers/producers.selector";
-import "./AddMovie.scss";
+import "./UpdateMovie.scss";
 
-const AddMovie = () => {
+const UpdateMovie = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const movielists = useSelector(selectMovies);
+  const params = useParams();
+  let [currentMovie, setCurrentMovie] = useState({});
 
   const getActorData = async () => {
     try {
-      let result = await axios.get(
-        `${env.api}/actors/getallactors`
-        //     {
-        //     headers: {
-        //       Authorization: window.localStorage.getItem("app-token"),
-        //     },
-        //   }
-      );
+      let result = await axios.get(`${env.api}/actors/getallactors`);
       if (result.status === 200) {
         dispatch(setActors(result.data));
       }
@@ -62,17 +59,15 @@ const AddMovie = () => {
     },
     onSubmit: async (values) => {
       try {
-        if (values.producerId === "")
-          values.producerId = producerOptions[0].idproducers.toString();
-        let result = await axios.post(
-          `${env.api}/movies/addmovie`,
-          values
-          //  {
-          //   headers: {
-          //     Authorization: window.localStorage.getItem("app-token"),
-          //   },
-          // }
-        );
+        if (values.producerId === "") {
+          let producer = producerOptions.find(
+            (e) => e.producername == currentMovie.producername
+          );
+          values.producerId = producer.idproducers;
+        }
+        values.movieId = params.movieid;
+
+        let result = await axios.post(`${env.api}/movies/updatemovie`, values);
         if (result.status === 200) {
           alert("Movie added");
           navigate("/");
@@ -84,9 +79,32 @@ const AddMovie = () => {
       }
     },
   });
+
+  const getMovieData = async () => {
+    try {
+      let movie = await movielists.find((e) => e.idmovies == params.movieid);
+
+      formik.setValues({
+        moviename: movie.moviename,
+        movieyear: movie.movieyear,
+        movieposter: movie.movieposter,
+        movieplot: movie.movieplot,
+        producerId: "",
+        actors: [],
+      });
+      setCurrentMovie(movie);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getMovieData();
+  }, []);
   return (
     actorOptions &&
-    producerOptions && (
+    producerOptions &&
+    currentMovie && (
       <div className="addmovie-main">
         <div className="box">
           <div className="title">
@@ -152,14 +170,22 @@ const AddMovie = () => {
                   <label>Producer:</label>
                   <select
                     className="inputbox"
-                    value={formik.values.producerId}
+                    // value={formik.values.producerId}
                     onChange={formik.handleChange}
                     name="producerId"
                     required
                   >
                     {producerOptions.map((producer, i) => {
                       return (
-                        <option key={i + 1} value={producer.idproducers}>
+                        <option
+                          key={i + 1}
+                          value={producer.idproducers}
+                          selected={
+                            producer.producername === currentMovie.producername
+                              ? true
+                              : false
+                          }
+                        >
                           {producer.producername}
                         </option>
                       );
@@ -219,4 +245,4 @@ const AddMovie = () => {
   );
 };
 
-export default AddMovie;
+export default UpdateMovie;

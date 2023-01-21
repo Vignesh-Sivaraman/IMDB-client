@@ -21,17 +21,11 @@ const AddProducer = () => {
         let result = await axios.post(
           `${env.api}/producers/addproducer`,
           values
-          //  {
-          //   headers: {
-          //     Authorization: window.localStorage.getItem("app-token"),
-          //   },
-          // }
         );
         if (result.status === 200) {
           alert("Producer added");
           navigate("/addmovie");
         }
-        console.log(values);
       } catch (err) {
         alert(`Error Code: ${err}`);
       }
